@@ -5,7 +5,7 @@ create table Hotel(
 );
   
 -- create table 
-insert into Hotel values (1, "Hola", "Cali");
+
 select * from Hotel;
 
 create table Room(
@@ -16,8 +16,8 @@ create table Room(
     primary key(roomNo, hotelNo),
     foreign key(hotelNo) references Hotel(hotelNo),
     check(type in ('Single','Double','Family')),
-    check(price > 9 & price < 101),
-    check(roomNo > 0 & roomNo < 121)
+    check(price > 9 and price < 101),
+    check(roomNo > 0 and roomNo < 121)
 );
 
 create table Guest(
@@ -30,20 +30,19 @@ create table Guest(
 create table Booking(
     hotelNo integer,
     guestNo integer,
-    dateFrom datetime,
-    dateTo datetime,
+    dateFrom date,
+    dateTo date,
     roomNo integer,
+    -- CONSTRAINT dateFrom check(dateFrom > cast(current_date as date) AND dateTo > cast(current_date as date) AND dateTo > dateFrom),
+    check(dateFrom > current_date and dateTo > dateTo),
     primary key(hotelNo, guestNo, dateFrom),
     foreign key(hotelNo) references Hotel(hotelNo),
     foreign key(roomNo) references Room(roomNo),
-    foreign key(guestNo) references Guest(guestNo),
-    check(dateFrom > cast(current_timestamp as date))
+    foreign key(guestNo) references Guest(guestNo)
 );
 
 
--- Hotel
-
--- Room
+-- inserts 
 
 insert into Guest values (1, "John", "Cali");
 insert into Guest values (2, "Jane", "Cali");
@@ -91,4 +90,13 @@ insert into Booking values (1, 7, '2022-06-13', '2022-06-14', 9);
 insert into Booking values (1, 8, '2022-06-15', '2022-06-16', 4);
 insert into Booking values (1, 9, '2022-06-17', '2022-06-18', 3);
 insert into Booking values (1, 10, '2022-06-19', '2022-06-20', 2);
+-- insert not added because the date
+insert into Booking values (1, 8, '2021-01-29', '2021-01-30', 4);
 
+
+select * from Hotel;
+select * from Guest;
+select * from Room;
+select * from Booking;
+select current_date;
+select * from Booking where dateFrom > current_date;
