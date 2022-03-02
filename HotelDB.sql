@@ -34,7 +34,7 @@ create table Booking(
     dateTo date,
     roomNo integer,
     -- CONSTRAINT dateFrom check(dateFrom > cast(current_date as date) AND dateTo > cast(current_date as date) AND dateTo > dateFrom),
-    check(dateFrom > current_date and dateTo > dateTo),
+     check(dateFrom > current_date and dateTo > current_date),
     primary key(hotelNo, guestNo, dateFrom),
     foreign key(hotelNo) references Hotel(hotelNo),
     foreign key(roomNo) references Room(roomNo),
@@ -99,4 +99,4 @@ select * from Guest;
 select * from Room;
 select * from Booking;
 select current_date;
-select * from Booking where dateFrom > current_date;
+-- select * from Booking where dateFrom > current_date;
