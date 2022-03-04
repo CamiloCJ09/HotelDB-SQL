@@ -110,5 +110,6 @@ select avg(price) from Room;
 select count(guestName) from Guest where guestName like '%Juan%';
 select sum(price) from Room where type == 'Double';
 select sum(price) from Room where exists(
-select roomNo from Booking where Room.roomNo == Booking.roomNo
+ select roomNo from Booking where Room.roomNo == Booking.roomNo and Room.type == 'Double'
  );
+
