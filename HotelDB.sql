@@ -100,3 +100,15 @@ select * from Room;
 select * from Booking;
 select current_date;
 -- select * from Booking where dateFrom > current_date;
+
+
+
+
+--- consultas con funciones agregadas
+select count(*) from Hotel;
+select avg(price) from Room;
+select count(guestName) from Guest where guestName like 'Juan';
+select sum(price) from Room where type == 'Double';
+select sum(price) from Room where exists(
+select roomNo from Booking where Room.roomNo == Booking.roomNo
+ );
