@@ -105,11 +105,11 @@ select current_date;
 
 
 --- consultas con funciones agregadas
-select count(*) from Hotel;
-select avg(price) from Room;
-select count(guestName) from Guest where guestName like '%Juan%';
-select sum(price) from Room where type == 'Double';
+select count(*) from Hotel; -- Cuántos hoteles hay registrados?
+select avg(price) from Room; -- Promedio de precios de habitaciones
+select count(guestName) from Guest where guestName like '%Juan%'; -- Cuántos huéspedes tienen el nombre Juan?
+select sum(price) from Room where type == 'Double'; -- Suma de los precios de las habitaciones de dobles
 select sum(price) from Room where exists(
  select roomNo from Booking where Room.roomNo == Booking.roomNo and Room.type == 'Double'
- );
+ );  -- Suma de los precios de las habitaciones de dobles que están reservadas
 
